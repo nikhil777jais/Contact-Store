@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="row justify-content-center align-item-center">
+        <div class="col-md-7 mt-4 ">
+            <p>click here for <button class="btn btn-sm btn-warning" (click)="onSwitchMode()">{{ isLoginMode ? 'Signup': 'Login'}}</button> </p>
+        </div>
+        <div class="col-md-7" *ngIf="isLoginMode">
+            <form #loginForm = "ngForm" (ngSubmit)="onLogin(loginForm)">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" email required name="email" ngModel id="email" class="form-control"  #emailInput="ngModel">
+                    <span class="text-danger" *ngIf="!emailInput.valid && emailInput.touched">
+                        <span *ngIf="emailInput.errors?.['email']"><small>Please enter a valid email address</small></span>  
+                        <span *ngIf="emailInput.errors?.['required']"><small>Email address is required</small></span>  
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" required minlength="6" name="password" minlength="6" ngModel id="password" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit" >Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-7" *ngIf="!isLoginMode">
+            <form #signupForm = "ngForm" (ngSubmit)="onSignup(signupForm)">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" required ngModel id="name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name="email" email required ngModel id="email" class="form-control" #emailInput="ngModel" >
+                    <span class="text-danger" *ngIf="!emailInput.valid && emailInput.touched">
+                        <span *ngIf="emailInput.errors?.['email']"><small>Please enter a valid email address</small></span>  
+                        <span *ngIf="emailInput.errors?.['required']"><small>Email address is required</small></span>  
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="number" name="phone" required ngModel id="phone" class="form-control" #phoneInput="ngModel" >
+                    <span class="text-danger" *ngIf="!phoneInput.valid && phoneInput.touched">
+                        <span *ngIf="phoneInput.errors?.['required']"><small>Phone Number is required</small></span>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" name="address" required ngModel id="address" class="form-control" #addressInput="ngModel">
+                    <span class="text-danger" *ngIf="!addressInput.valid && addressInput.touched">
+                        <span *ngIf="addressInput.errors?.['required']"><small>Address is required</small></span>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" minlength="6" required ngModel id="password" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" [disabled]="!signupForm.valid" type="submit">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
